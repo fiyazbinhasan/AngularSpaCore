@@ -29,27 +29,15 @@ export class ForecastDetailComponent implements OnChanges {
         private fb: FormBuilder,
         private forecastService: ForecastService,
         private forecastValidators: ForcastValidators) {
-
-        this.createForm();
+        
     }
-
+    
     ngOnChanges(): void {
-        this.forecastForm.reset({
-            dateFormatted: this.forecast.dateFormatted,
-            temperatureC: this.forecast.temperatureC,
+        this.forecastForm = this.fb.group({
+            dateFormatted: new FormControl(this.forecast.dateFormatted, [Validators.required, Validators.minLength(10)], [this.forecastValidators.existingDateValidator(this.forecast.dateFormatted)]),
+            temperatureC: new FormControl(this.forecast.temperatureC, [Validators.required]),
             temperatureF: this.forecast.temperatureF,
             summary: this.forecast.summary
-        });
-
-        this.dateFormatted!.setAsyncValidators([this.forecastValidators.existingDateValidator(this.forecast.dateFormatted)]);
-    }
-
-    createForm() {
-        this.forecastForm = this.fb.group({
-            dateFormatted: new FormControl('', [Validators.required, Validators.minLength(10)]),
-            temperatureC: new FormControl('', [Validators.required]),
-            temperatureF: '',
-            summary: ''
         });
     }
 
