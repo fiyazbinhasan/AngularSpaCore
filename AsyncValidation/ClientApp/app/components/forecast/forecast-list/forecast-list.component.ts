@@ -28,15 +28,4 @@ export class ForecastListComponent {
     select(selectedForecast: WeatherForecast) {
         this.selectedForecast = selectedForecast;
     }
-
-    //onAddButtonClicked() {
-    //    this.selectedForecast = { id: undefined, dateFormatted: '', temperatureC: 0, temperatureF: 0, summary: '' };
-    //}
-    //constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-    //    //http.get(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-    //    //    this.forecasts = result.json() as WeatherForecast[];
-    //    //}, error => console.error(error));
-
-    //    this.forecasts = weatherForecasts;
-    //}
 }

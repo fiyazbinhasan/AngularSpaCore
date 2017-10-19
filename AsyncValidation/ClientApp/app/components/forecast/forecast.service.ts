@@ -23,15 +23,8 @@ export class ForecastService {
 
     // Fake server update; assume nothing can go wrong
     updateForecast(weatherForecast: WeatherForecast): Observable<WeatherForecast> {
-        if (weatherForecast.id === undefined) {
-            const newForecast = Object.assign(weatherForecast, { id: weatherForecasts.length++ });
-            weatherForecasts.concat(newForecast);
-            return of(newForecast).delay(this.delayMs);
-        }
-        else {
-            const oldForecast = weatherForecasts.find(w => w.id === weatherForecast.id);
-            const newForecast = Object.assign(oldForecast, weatherForecast); // Demo: mutate cached hero
-            return of(newForecast).delay(this.delayMs); // simulate latency with delay
-        }
+        const oldForecast = weatherForecasts.find(w => w.id === weatherForecast.id);
+        const newForecast = Object.assign(oldForecast, weatherForecast); // Demo: mutate cached hero
+        return of(newForecast).delay(this.delayMs); // simulate latency with delay
     }
 }

@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@ang
 
 import { WeatherForecast, weatherForecasts, summaries } from '../forecast-models';
 import { ForecastService } from '../forecast.service';
-import { existingDateValidator } from '../forecast.validators';
+import { ForcastValidators } from '../forecast.validators';
 
 @Component({
     selector: 'forecast-detail',
@@ -15,7 +15,7 @@ import { existingDateValidator } from '../forecast.validators';
                     border-left: 5px solid #a94442; /* red */
             }`]
 })
-export class ForecastDetailComponent implements OnChanges, OnInit {
+export class ForecastDetailComponent implements OnChanges {
     @Input() forecast: WeatherForecast;
     summaries = summaries;
 
@@ -27,7 +27,8 @@ export class ForecastDetailComponent implements OnChanges, OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private forecastService: ForecastService) {
+        private forecastService: ForecastService,
+        private forecastValidators: ForcastValidators) {
 
         this.createForm();
     }
@@ -39,10 +40,8 @@ export class ForecastDetailComponent implements OnChanges, OnInit {
             temperatureF: this.forecast.temperatureF,
             summary: this.forecast.summary
         });
-    }
 
-    ngOnInit(): void {
-        this.dateFormatted!.setAsyncValidators(existingDateValidator(this.forecast.dateFormatted, this.forecastService));
+        this.dateFormatted!.setAsyncValidators([this.forecastValidators.existingDateValidator(this.forecast.dateFormatted)]);
     }
 
     createForm() {

@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ForecastListComponent } from './components/forecast/forecast-list/forecast-list.component';
 import { ForecastDetailComponent } from './components/forecast/forecast-detail/forecast-detail.component';
 import { ForecastService } from './components/forecast/forecast.service';
+import { ForcastValidators } from './components/forecast/forecast.validators';
 import { CounterComponent } from './components/counter/counter.component';
 
 @NgModule({
@@ -34,7 +35,7 @@ import { CounterComponent } from './components/counter/counter.component';
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    providers: [ForecastService] 
+    providers: [ForecastService, ForcastValidators] 
 })
 export class AppModuleShared {
 }
