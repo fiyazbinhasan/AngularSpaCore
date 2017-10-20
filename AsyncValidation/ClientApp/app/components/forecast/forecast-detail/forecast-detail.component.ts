@@ -29,7 +29,6 @@ export class ForecastDetailComponent implements OnChanges {
         private fb: FormBuilder,
         private forecastService: ForecastService,
         private forecastValidators: ForcastValidators) {
-        
     }
     
     ngOnChanges(): void {
@@ -54,8 +53,8 @@ export class ForecastDetailComponent implements OnChanges {
             id: this.forecast.id,
             dateFormatted: formModel.dateFormatted,
             temperatureC: parseInt(formModel.temperatureC),
-            temperatureF: parseInt(formModel.temperatureF),
-            summary: formModel.summary as string
+            temperatureF: formModel.temperatureF,
+            summary: formModel.summary
         };
         return saveForcast;
     }
