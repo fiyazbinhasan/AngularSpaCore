@@ -1,7 +1,7 @@
 ﻿<form [formGroup]="forecastForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="form-group">
         <label for="dateFormatted">Date (Formatted)</label>
-        <input type="date" id="dateFormatted" class="form-control"
+        <input type="datetime-local" id="dateFormatted" class="form-control"
                formControlName="dateFormatted" required>
         <div *ngIf="dateFormatted.invalid && (dateFormatted.dirty || dateFormatted.touched)">
             <span *ngIf="dateFormatted.errors.required">

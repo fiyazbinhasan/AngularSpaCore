@@ -16,7 +16,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let forecast of forecasts | async">
-            <td><a (click)="select(forecast)">{{ forecast.dateFormatted }}</a></td>
+            <td><a (click)="select(forecast)">{{ forecast.dateFormatted | date:'medium'}}</a></td>
             <td>{{ forecast.temperatureC }}</td>
             <td>{{ forecast.temperatureF }}</td>
             <td>{{ forecast.summary }}</td>
