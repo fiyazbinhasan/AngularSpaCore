@@ -34,9 +34,8 @@
             <option *ngFor="let summary of summaries" [value]="summary">{{summary}}</option>
         </select>
     </div>
-    <button type="submit"
-            [disabled]="forecastForm.pristine || forecastForm.invalid" class="btn btn-success">
+    <button type="submit" class="btn btn-success">
         Save
     </button>
 </form>
-<!--<p>forecastForm value: {{ forecastForm.value | json}}</p>-->
+<p>forecastForm value: {{ forecastForm.value | json}}</p>

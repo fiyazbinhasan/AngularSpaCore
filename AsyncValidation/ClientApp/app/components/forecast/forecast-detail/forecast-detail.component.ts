@@ -32,18 +32,20 @@ export class ForecastDetailComponent implements OnChanges {
     }
     
     ngOnChanges(): void {
-        this.forecastForm = this.fb.group({
-            dateFormatted: new FormControl(this.forecast.dateFormatted, [Validators.required, Validators.minLength(10)], [this.forecastValidators.existingDateValidator(this.forecast.dateFormatted)]),
+        this.forecastForm = new FormGroup({
+            dateFormatted: new FormControl(this.forecast.dateFormatted, { validators: Validators.required, asyncValidators: [this.forecastValidators.existingDateValidator(this.forecast.dateFormatted)] }),
             temperatureC: new FormControl(this.forecast.temperatureC, [Validators.required]),
-            temperatureF: this.forecast.temperatureF,
-            summary: this.forecast.summary
-        });
+            temperatureF: new FormControl(this.forecast.temperatureF),
+            summary: new FormControl(this.forecast.summary)
+        }, { updateOn: 'submit' });
     }
 
     onSubmit() {
-        this.forecast = this.prepareSaveForecast();
-        this.forecastService.updateForecast(this.forecast).subscribe(/* error handling */);
-        this.ngOnChanges();
+        if (this.forecastForm.valid) {
+            this.forecast = this.prepareSaveForecast();
+            this.forecastService.updateForecast(this.forecast).subscribe(/* error handling */);
+            this.ngOnChanges();
+        }
     }
 
     prepareSaveForecast(): WeatherForecast {
