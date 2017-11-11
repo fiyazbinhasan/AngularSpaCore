@@ -1,0 +1,26 @@
+<h1>Users</h1>
+
+<p *ngIf="isLoading"><i>Loading users ... </i></p>
+<button type="button" (click)="onAddButtonClicked()" class="btn btn-primary">New User</button>
+
+<table class='table' *ngIf="users">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Avatar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td><a (click)="select(user)">{{ user.name}}</a></td>
+            <td><img [src]="user.avatar" width="20" height="20"/></td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="selectedUser">
+    <hr>
+    <h2>User Detail</h2>
+    <h3>Editing: {{selectedUser.name}}</h3>
+    <user-detail [user]="selectedUser" (created)="onCreated($event)" (updated)="onUpdated($event)"></user-detail>
+</div>

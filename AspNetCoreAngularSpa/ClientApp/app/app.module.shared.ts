@@ -13,6 +13,10 @@ import { ForecastService } from './components/forecast/forecast.service';
 import { ForcastValidators } from './components/forecast/forecast.validators';
 import { CounterComponent } from './components/counter/counter.component';
 
+import { UserListComponent } from './components/user/user-list/user-list.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { UserService } from './components/user/user.service';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -20,6 +24,8 @@ import { CounterComponent } from './components/counter/counter.component';
         CounterComponent,
         ForecastListComponent,
         ForecastDetailComponent,
+        UserListComponent,
+        UserDetailComponent,
         HomeComponent
     ],
     imports: [
@@ -32,10 +38,11 @@ import { CounterComponent } from './components/counter/counter.component';
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'forecasts', component: ForecastListComponent },
+            { path: 'users', component: UserListComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    providers: [ForecastService, ForcastValidators] 
+    providers: [ForecastService, UserService, ForcastValidators] 
 })
 export class AppModuleShared {
 }

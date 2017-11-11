@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\forecast\forecast.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\forecast\forecast-models.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\forecast\forecast.validators.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\user\user-models.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
