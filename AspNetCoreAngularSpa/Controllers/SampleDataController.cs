@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AsyncValidation.Controllers
+namespace AspNetCoreAngularSpa.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller

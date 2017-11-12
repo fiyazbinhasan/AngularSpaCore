@@ -1,7 +1,7 @@
 ﻿using AspNetCoreAngularSpa.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace AsyncValidation
+namespace AspNetCoreAngularSpa
 {
     public class ApplicationDbContext : DbContext
     {

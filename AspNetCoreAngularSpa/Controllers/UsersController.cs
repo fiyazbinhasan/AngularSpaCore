@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreAngularSpa.Models;
-using AsyncValidation;
+using AspNetCoreAngularSpa;
 using AspNetCoreAngularSpa.ViewModels;
 using System.IO;
 

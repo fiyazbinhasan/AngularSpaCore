@@ -1,10 +1,4 @@
 {
-  "name": "AsyncValidation",
-  "private": true,
-  "version": "0.0.0",
-  "scripts": {
-    "test": "karma start ClientApp/test/karma.conf.js"
-  },
   "dependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
@@ -60,5 +54,11 @@
     "karma-cli": "1.0.1",
     "karma-jasmine": "1.1.0",
     "karma-webpack": "2.0.5"
-  }
+  },
+  "name": "aspnetcoreangularspa",
+  "private": true,
+  "scripts": {
+    "test": "karma start ClientApp/test/karma.conf.js"
+  },
+  "version": "0.0.0"
 }
