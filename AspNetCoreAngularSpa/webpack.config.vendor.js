@@ -12,9 +12,12 @@ const treeShakableModules = [
     '@angular/platform-browser',
     '@angular/platform-browser-dynamic',
     '@angular/router',
+    '@angular/cdk',
+    '@angular/material',
     'zone.js',
 ];
 const nonTreeShakableModules = [
+    '@angular/material/prebuilt-themes/deeppurple-amber.css',
     'bootstrap',
     'bootstrap/dist/css/bootstrap.css',
     'es6-promise',

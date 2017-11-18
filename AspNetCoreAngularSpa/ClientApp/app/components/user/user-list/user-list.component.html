@@ -1,26 +1,22 @@
-<h1>Users</h1>
-
 <p *ngIf="isLoading"><i>Loading users ... </i></p>
-<button type="button" (click)="onAddButtonClicked()" class="btn btn-primary">New User</button>
 
-<table class='table' *ngIf="users">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Avatar</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let user of users">
-            <td><a (click)="select(user)">{{ user.name}}</a></td>
-            <td><img src="/Uploads/{{user.avatar}}" width="40" height="40"/></td>
-        </tr>
-    </tbody>
-</table>
+<mat-selection-list *ngIf="users">
+    <h3 mat-subheader>Users</h3>
+    <mat-list-item *ngFor="let user of users">
+        <img matListAvatar src="/Uploads/{{user.avatar}}" [alt]="user.name">
+        <a mat-line (click)="select(user)">{{user.name}}</a>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+</mat-selection-list>
+
+<div class="fab-container">
+    <button mat-fab (click)="onAddButtonClicked()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
 
 <div *ngIf="selectedUser">
-    <hr>
-    <h2>User Detail</h2>
-    <h3>Editing: {{selectedUser.name}}</h3>
+    <h3 *ngIf="!selectedUser.name">User Detail</h3>
+    <h3 *ngIf="selectedUser.name">Editing: {{selectedUser.name}}</h3>
     <user-detail [user]="selectedUser" (created)="onCreated($event)" (updated)="onUpdated($event)"></user-detail>
 </div>

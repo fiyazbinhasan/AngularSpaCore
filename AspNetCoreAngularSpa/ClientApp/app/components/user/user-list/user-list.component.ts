@@ -8,7 +8,11 @@ import { UserService } from '../user.service';
 
 @Component({
     selector: 'user-list',
-    templateUrl: './user-list.component.html'
+    templateUrl: './user-list.component.html',
+    styles: [`.fab-container {
+                text-align: right;
+                margin: 5px;
+            }`]
 })
 export class UserListComponent {
     isLoading = false;

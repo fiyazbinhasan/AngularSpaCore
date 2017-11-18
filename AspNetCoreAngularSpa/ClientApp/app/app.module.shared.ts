@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule, MatCardModule, MatGridListModule, MatListModule, MatIconModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -33,6 +34,14 @@ import { UserService } from './components/user/user.service';
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
+
+        MatButtonModule,
+        MatCardModule,
+        MatGridListModule,
+        MatListModule,
+        MatIconModule,
+        MatInputModule,
+
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

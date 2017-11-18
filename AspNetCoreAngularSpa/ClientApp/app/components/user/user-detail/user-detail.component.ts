@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnChanges, OnInit, EventEmitter, Output  } from '@angular/core';
+﻿import { Component, Input, OnChanges, OnInit, EventEmitter, Output, ViewChild  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { User, users } from '../user-models';
@@ -12,6 +12,7 @@ export class UserDetailComponent implements OnChanges {
     @Input() user: User;
     @Output() created: EventEmitter<User> = new EventEmitter<User>();
     @Output() updated: EventEmitter<User> = new EventEmitter<User>();
+    @ViewChild("uploader") uploader: any;
 
     userForm: FormGroup;
     
@@ -26,6 +27,8 @@ export class UserDetailComponent implements OnChanges {
             name: new FormControl(this.user.name),
             avatar: new FormControl(null)
         }, { updateOn: 'submit' });
+        
+        this.uploader.nativeElement.value = "";
     }
 
     onSubmit() {
