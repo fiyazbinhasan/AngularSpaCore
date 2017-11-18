@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <img width="40" height="40" src="data:image;base64,@System.Convert.ToBase64String(item.Avatar)"/>
+                <img width="40" height="40" src="~/Uploads/@item.Avatar"/>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

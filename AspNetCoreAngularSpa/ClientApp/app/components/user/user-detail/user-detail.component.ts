@@ -22,6 +22,7 @@ export class UserDetailComponent implements OnChanges {
     
     ngOnChanges(): void {
         this.userForm = new FormGroup({
+            id: new FormControl(this.user.id),
             name: new FormControl(this.user.name),
             avatar: new FormControl(null)
         }, { updateOn: 'submit' });
@@ -32,15 +33,15 @@ export class UserDetailComponent implements OnChanges {
             if (this.user.id === undefined)
                 this.userService.createUser(this.prepareSaveUser()).subscribe((user) => this.created.emit(user));
             else
-                this.userService.updateUser(this.prepareSaveUser()).subscribe(() => this.updated.emit(this.user));
+                this.userService.updateUser(this.prepareSaveUser()).subscribe((user) => this.updated.emit(user));
         }
     }
 
     prepareSaveUser(): FormData {
-        debugger;
         const formModel = this.userForm.value;
 
         let formData = new FormData();
+
         formData.append("id", formModel.id);
         formData.append("name", formModel.name);
         formData.append("avatar", formModel.avatar);
@@ -49,7 +50,6 @@ export class UserDetailComponent implements OnChanges {
     }
 
     fileChange(files: FileList) {
-        debugger;
         if (files && files[0].size > 0) {
             this.userForm.patchValue({
                 avatar: files[0]

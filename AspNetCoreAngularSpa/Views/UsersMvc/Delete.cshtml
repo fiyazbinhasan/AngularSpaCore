@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.Avatar)
         </dt>
         <dd>
-            <img width="40" height="40" src="data:image;base64,@System.Convert.ToBase64String(Model.Avatar)" />
+            <img width="40" height="40" src="~/Uploads/@Model.Avatar" />
         </dd>
     </dl>
     

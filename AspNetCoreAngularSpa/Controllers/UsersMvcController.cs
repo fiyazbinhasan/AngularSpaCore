@@ -9,16 +9,19 @@ using AspNetCoreAngularSpa;
 using AspNetCoreAngularSpa.Models;
 using AspNetCoreAngularSpa.ViewModels;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace AspNetCoreAngularSpa.Controllers
 {
     public class UsersMvcController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _environment;
 
-        public UsersMvcController(ApplicationDbContext context)
+        public UsersMvcController(ApplicationDbContext context, IHostingEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         // GET: UsersMvc
@@ -58,17 +61,19 @@ namespace AspNetCoreAngularSpa.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User
+                var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
+                
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    Name = vm.Name
+                    await vm.Avatar.CopyToAsync(stream);
+                }
+
+                User user = new User
+                {
+                    Name = vm.Name,
+                    Avatar = vm.Avatar.FileName
                 };
 
-                using (var memoryStream = new MemoryStream())
-                {
-                    await vm.Avatar.CopyToAsync(memoryStream);
-                    user.Avatar = memoryStream.ToArray();
-                }
-                
                 _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -111,13 +116,15 @@ namespace AspNetCoreAngularSpa.Controllers
                 {
                     var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
-                    user.Name = vm.Name;
+                    var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
 
-                    using (var memoryStream = new MemoryStream())
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        await vm.Avatar.CopyToAsync(memoryStream);
-                        user.Avatar = memoryStream.ToArray();
+                        await vm.Avatar.CopyToAsync(stream);
                     }
+
+                    user.Name = vm.Name;
+                    user.Avatar = vm.Avatar.FileName;
 
                     _context.Update(user);
                     await _context.SaveChangesAsync();

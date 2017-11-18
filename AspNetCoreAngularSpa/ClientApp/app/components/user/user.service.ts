@@ -10,7 +10,7 @@ import { User, users } from './user-models';
 @Injectable()
 export class UserService {
     private baseUrl = 'api/users';
-    
+
     constructor(private http: Http) { }
 
     getUsers(): Observable<User[]> {
@@ -29,8 +29,9 @@ export class UserService {
             .map(response => response.json())
     }
 
-    updateUser(user: FormData): Observable<Response> {
+    updateUser(user: FormData): Observable<User> {
         const url = `${this.baseUrl}/${user.get("id")}`;
-        return this.http.put(url, user);
+        return this.http.put(url, user)
+            .map(response => response.json());
     }
 }

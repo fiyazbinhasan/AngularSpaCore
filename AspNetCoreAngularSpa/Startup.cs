@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace AspNetCoreAngularSpa
 {
@@ -40,6 +43,11 @@ namespace AspNetCoreAngularSpa
             }
 
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Uploads")),
+                RequestPath = new PathString("/Uploads")
+            });
 
             app.UseMvc(routes =>
             {

@@ -9,6 +9,8 @@ using AspNetCoreAngularSpa.Models;
 using AspNetCoreAngularSpa;
 using AspNetCoreAngularSpa.ViewModels;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.FileProviders;
 
 namespace AspNetCoreAngularSpa.Controllers
 {
@@ -17,22 +19,24 @@ namespace AspNetCoreAngularSpa.Controllers
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment _environment;
 
-        public UsersController(ApplicationDbContext context)
+        public UsersController(ApplicationDbContext context, IHostingEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         // GET: api/Users
         [HttpGet]
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> Get()
         {
             return _context.Users;
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser([FromRoute] int id)
+        [HttpGet("{id}", Name = "GetUser")]
+        public async Task<IActionResult> Get([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -51,17 +55,24 @@ namespace AspNetCoreAngularSpa.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser([FromRoute] int id, [FromBody] User user)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromForm] UserVM vm)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Id)
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+
+            var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                return BadRequest();
+                await vm.Avatar.CopyToAsync(stream);
             }
+
+            user.Name = vm.Name;
+            user.Avatar = vm.Avatar.FileName;
 
             _context.Entry(user).State = EntityState.Modified;
 
@@ -81,28 +92,30 @@ namespace AspNetCoreAngularSpa.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(user);
         }
 
         // POST: api/Users
         [HttpPost]
-        public async Task<IActionResult> PostUser([FromForm]UserVM vm)
+        public async Task<IActionResult> Post([FromForm]UserVM vm)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             /* Use Automapper for mapping UserVM to User */
+            var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
 
-            User user = new User {
-                Name = vm.Name
-            };
-
-            using (var memoryStream = new MemoryStream())
+            using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await vm.Avatar.CopyToAsync(memoryStream);
-                user.Avatar = memoryStream.ToArray();
+                await vm.Avatar.CopyToAsync(stream);
             }
+
+            User user = new User
+            {
+                Name = vm.Name,
+                Avatar = vm.Avatar.FileName
+            };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -112,7 +125,7 @@ namespace AspNetCoreAngularSpa.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {

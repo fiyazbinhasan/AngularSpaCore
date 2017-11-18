@@ -22,13 +22,7 @@ export class UserListComponent {
     getUsers() {
         this.isLoading = true;
         this.userService.getUsers().subscribe((users) => {
-            this.users = users.map(function (user) {
-                return {
-                    "id": user.id,
-                    "name": user.name,
-                    "avatar": "data:image/png;base64," + user.avatar
-                }
-            });
+            this.users = users;
             this.isLoading = false;
         }, (error) => {
             console.log(error);
@@ -49,12 +43,10 @@ export class UserListComponent {
     }
 
     onCreated(user: User) {
-        user.avatar = "data:image/png;base64," + user.avatar;
         this.users.push(user);
     }
 
     onUpdated(user: User) {
-        user.avatar = "data:image/png;base64," + user.avatar;
         const oldUser = this.users.find(u => u.id === user.id);
         Object.assign(oldUser, user);
     }
