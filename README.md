@@ -22,3 +22,7 @@
 ### Tree Shaking
 
 * [How Tree Shaking Works in ASP.NET Core Angular SPA](http://fiyazhasan.me/how-tree-shaking-works-in-asp-net-core-angular-spa/)
+
+### Pipe
+
+* [Handling Boolean Types on Angular with Pipe](http://fiyazhasan.me/handling-boolean-types-on-angular-with-pipe/)
