@@ -57,29 +57,29 @@ namespace AspNetCoreAngularSpa.Controllers
         // POST: UsersMvc/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] UserVM vm)
+    public async Task<IActionResult> Create([FromForm] UserVM vm)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
+            var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
+            
+            using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
-                
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await vm.Avatar.CopyToAsync(stream);
-                }
-
-                User user = new User
-                {
-                    Name = vm.Name,
-                    Avatar = vm.Avatar.FileName
-                };
-
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await vm.Avatar.CopyToAsync(stream);
             }
-            return View(vm);
+
+            User user = new User
+            {
+                Name = vm.Name,
+                Avatar = vm.Avatar.FileName
+            };
+
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
+        return View(vm);
+    }
 
         // GET: UsersMvc/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -4,4 +4,6 @@
 
 <p>Current count: <strong>{{ currentCount }}</strong></p>
 
-<button mat-raised-button color="primary" (click)="incrementCounter()">Increment</button>
+<button [ngStyle]="{'width.px': width }" (click)="incrementCounter()">Increment</button>
+<br/>
+<button [style.width]="width + 'px'"  (click)="incrementCounter()">Increment</button>

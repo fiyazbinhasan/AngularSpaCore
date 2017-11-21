@@ -97,31 +97,31 @@ namespace AspNetCoreAngularSpa.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public async Task<IActionResult> Post([FromForm]UserVM vm)
+    public async Task<IActionResult> Post([FromForm]UserVM vm)
+    {
+        if (!ModelState.IsValid)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            /* Use Automapper for mapping UserVM to User */
-            var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await vm.Avatar.CopyToAsync(stream);
-            }
-
-            User user = new User
-            {
-                Name = vm.Name,
-                Avatar = vm.Avatar.FileName
-            };
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return BadRequest(ModelState);
         }
+
+        var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await vm.Avatar.CopyToAsync(stream);
+        }
+
+        User user = new User
+        {
+            Name = vm.Name,
+            Avatar = vm.Avatar.FileName
+        };
+
+        _context.Users.Add(user);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction("GetUser", new { id = user.Id }, user);
+    }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
