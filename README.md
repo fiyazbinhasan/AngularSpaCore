@@ -26,3 +26,5 @@
 ### Pipe
 
 * [Handling Boolean Types on Angular with Pipe](http://fiyazhasan.me/handling-boolean-types-on-angular-with-pipe/)
+
+![App Screen Shot](https://github.com/fiyazbinhasan/AspNetCore-AngularSpa-Playground/blob/master/app-screen-shot.png)
