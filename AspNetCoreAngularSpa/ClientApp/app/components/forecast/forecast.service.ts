@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-
+import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/delay';
@@ -27,4 +27,15 @@ export class ForecastService {
         const newForecast = Object.assign(oldForecast, weatherForecast); // Demo: mutate cached hero
         return of(newForecast).delay(this.delayMs); // simulate latency with delay
     }
+}
+
+export class ForecastDataSource extends DataSource<any> {
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+
+    delayMs = 500;
+    connect(): Observable<WeatherForecast[]> {
+        return of(weatherForecasts).delay(this.delayMs);
+    }
+
+    disconnect() { }
 }

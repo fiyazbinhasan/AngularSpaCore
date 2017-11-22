@@ -1,5 +1,5 @@
 ﻿import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 import { WeatherForecast, weatherForecasts, summaries } from '../forecast-models';
 import { ForecastService } from '../forecast.service';
@@ -8,12 +8,7 @@ import { ForcastValidators } from '../forecast.validators';
 @Component({
     selector: 'forecast-detail',
     templateUrl: './forecast-detail.component.html',
-    styles: [`.ng-valid:not(form) {
-                    border-left: 5px solid #42A948; /* green */
-                }
-                .ng-invalid:not(form)  {
-                    border-left: 5px solid #a94442; /* red */
-            }`]
+    styleUrls: ['./forecast-detail.component.css']
 })
 export class ForecastDetailComponent implements OnChanges {
     @Input() forecast: WeatherForecast;
@@ -41,11 +36,13 @@ export class ForecastDetailComponent implements OnChanges {
     }
 
     onSubmit() {
-        if (this.forecastForm.valid) {
-            this.forecast = this.prepareSaveForecast();
-            this.forecastService.updateForecast(this.forecast).subscribe(/* error handling */);
-            this.ngOnChanges();
-        }
+        this.forecastForm.statusChanges.subscribe((status) => {
+            if (status === "VALID") {
+                this.forecast = this.prepareSaveForecast();
+                this.forecastService.updateForecast(this.forecast).subscribe(/* error handling */);
+                this.ngOnChanges();
+            }
+        });
     }
 
     prepareSaveForecast(): WeatherForecast {

@@ -1,4 +1,4 @@
-﻿import { Component, Input, OnChanges, OnInit, EventEmitter, Output, ViewChild  } from '@angular/core';
+﻿import { Component, Input, OnChanges, OnInit, EventEmitter, Output, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { User, users } from '../user-models';
@@ -6,7 +6,9 @@ import { UserService } from '../user.service';
 
 @Component({
     selector: 'user-detail',
-    templateUrl: './user-detail.component.html'
+    templateUrl: './user-detail.component.html',
+    styleUrls: ['./user-detail.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class UserDetailComponent implements OnChanges {
     @Input() user: User;

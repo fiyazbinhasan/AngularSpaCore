@@ -1,28 +1,27 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/finally';
 
 import { WeatherForecast, weatherForecasts } from '../forecast-models';
-import { ForecastService } from '../forecast.service';
+import { ForecastService, ForecastDataSource } from '../forecast.service';
 
 @Component({
     selector: 'forecast-list',
-    templateUrl: './forecast-list.component.html'
+    templateUrl: './forecast-list.component.html',
+    styleUrls: ['./forecast-list.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class ForecastListComponent {
-    isLoading = false;
     selectedForecast: WeatherForecast;
-    forecasts: Observable<WeatherForecast[]>;
+
+    displayedColumns = ['id', 'dateFormatted', 'temperatureC', 'temperatureF', 'summary'];
+    dataSource: any; 
 
     constructor(private forecastService: ForecastService) { }
 
-    ngOnInit() { this.getForecasts(); }
-
-    getForecasts() {
-        this.isLoading = true;
-        this.forecasts = this.forecastService.getForecasts()
-            .finally(() => this.isLoading = false);
+    ngOnInit() {
+        this.dataSource = new ForecastDataSource();
     }
 
     select(selectedForecast: WeatherForecast) {
