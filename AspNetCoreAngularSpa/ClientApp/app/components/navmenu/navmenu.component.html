@@ -1,4 +1,4 @@
-<div class='main-nav'>
+<!--<div class='main-nav'>
     <div class='navbar navbar-inverse'>
         <div class='navbar-header'>
             <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
@@ -35,4 +35,21 @@
             </ul>
         </div>
     </div>
-</div>
+</div>-->
+
+<mat-toolbar color="primary">
+    <span>ASP.NET Core Angular SPA</span>
+    <span class="spacer"></span>
+    <button mat-icon-button [routerLink]="['/home']">
+        <mat-icon>web</mat-icon>
+    </button>
+    <button mat-icon-button [routerLink]="['/counter']">
+        <mat-icon>timer</mat-icon>
+    </button>
+    <button mat-icon-button [routerLink]="['/forecasts']">
+        <mat-icon>cloud download</mat-icon>
+    </button>
+    <button mat-icon-button [routerLink]="['/users']">
+        <mat-icon>person pin</mat-icon>
+    </button>
+</mat-toolbar>

@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import 'zone.js';
-import 'bootstrap';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module.browser';
@@ -12,6 +11,7 @@ if (module.hot) {
         const oldRootElem = document.querySelector('app');
         const newRootElem = document.createElement('app');
         oldRootElem!.parentNode!.insertBefore(newRootElem, oldRootElem);
+        oldRootElem!.remove(); // browser animation module rendering duplication template
         modulePromise.then(appModule => appModule.destroy());
     });
 } else {

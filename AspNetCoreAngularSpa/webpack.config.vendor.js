@@ -18,12 +18,9 @@ const treeShakableModules = [
 ];
 const nonTreeShakableModules = [
     '@angular/material/prebuilt-themes/deeppurple-amber.css',
-    'bootstrap',
-    'bootstrap/dist/css/bootstrap.css',
     'es6-promise',
     'es6-shim',
-    'event-source-polyfill',
-    'jquery',
+    'event-source-polyfill'
 ];
 const allModules = treeShakableModules.concat(nonTreeShakableModules);
 
@@ -44,8 +41,7 @@ module.exports = (env) => {
             library: '[name]_[hash]'
         },
         plugins: [
-            new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
-            new webpack.ContextReplacementPlugin(/\@angular\b.*\b(bundles|linker)/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/11580
+           new webpack.ContextReplacementPlugin(/\@angular\b.*\b(bundles|linker)/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/11580
             new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, path.join(__dirname, './ClientApp')), // Workaround for https://github.com/angular/angular/issues/14898
             new webpack.IgnorePlugin(/^vertx$/) // Workaround for https://github.com/stefanpenner/es6-promise/issues/100
         ]
@@ -53,8 +49,6 @@ module.exports = (env) => {
 
     const clientBundleConfig = merge(sharedConfig, {
         entry: {
-            // To keep development builds fast, include all vendor dependencies in the vendor bundle.
-            // But for production builds, leave the tree-shakable ones out so the AOT compiler can produce a smaller bundle.
             vendor: isDevBuild ? allModules : nonTreeShakableModules
         },
         output: { path: path.join(__dirname, 'wwwroot', 'dist') },
