@@ -1,5 +1,7 @@
 # AspNetCore-AngularSpa-Playground
 
+![App Screen Shot](https://github.com/fiyazbinhasan/AspNetCore-AngularSpa-Playground/blob/master/app-screen-shot.png)
+
 ### Working with Files
 
 * [Story of File Uploading in ASP.NET Core (Part I - MVC/Razor Pages)](http://fiyazhasan.me/story-of-file-uploading-in-asp-net-core-part-i-mvc/)
@@ -26,3 +28,4 @@
 ### Pipe
 
 * [Handling Boolean Types on Angular with Pipe](http://fiyazhasan.me/handling-boolean-types-on-angular-with-pipe/)
+
