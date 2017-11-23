@@ -27,6 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Uploads\19601040_1381596515243437_8599830233281532938_n.jpg" />
+    <Content Include="Uploads\fizz.jpg" />
+    <Content Include="Uploads\User Profile 1-WF.png" />
+    <Content Include="Uploads\User Profile 2-WF.png" />
+    <Content Include="Uploads\User Profile 3-WF.png" />
+    <Content Include="Uploads\User Profile 4-WF.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\forecast\forecast.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\forecast\forecast-models.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\forecast\forecast.validators.ts" />

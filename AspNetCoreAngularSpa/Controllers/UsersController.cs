@@ -64,7 +64,7 @@ namespace AspNetCoreAngularSpa.Controllers
 
             var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
-            var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
+            var filePath = Path.Combine(_environment.ContentRootPath, @"Uploads", vm.Avatar.FileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -104,7 +104,7 @@ namespace AspNetCoreAngularSpa.Controllers
             return BadRequest(ModelState);
         }
 
-        var filePath = Path.Combine(_environment.ContentRootPath, "Uploads", vm.Avatar.FileName);
+        var filePath = Path.Combine(_environment.ContentRootPath, @"Uploads", vm.Avatar.FileName);
 
         using (var stream = new FileStream(filePath, FileMode.Create))
         {

@@ -45,7 +45,7 @@ namespace AspNetCoreAngularSpa
             app.UseStaticFiles();
 
             app.UseStaticFiles(new StaticFileOptions {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Uploads")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),  @"Uploads")),
                 RequestPath = new PathString("/Uploads")
             });
 
