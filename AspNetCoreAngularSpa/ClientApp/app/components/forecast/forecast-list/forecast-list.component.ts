@@ -22,6 +22,7 @@ export class ForecastListComponent {
 
     ngOnInit() {
         this.dataSource = new ForecastDataSource();
+        this.selectedForecast = undefined;
     }
 
     select(selectedForecast: WeatherForecast) {

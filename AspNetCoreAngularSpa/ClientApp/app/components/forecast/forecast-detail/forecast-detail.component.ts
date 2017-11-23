@@ -1,5 +1,6 @@
 ﻿import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { WeatherForecast, weatherForecasts, summaries } from '../forecast-models';
 import { ForecastService } from '../forecast.service';
@@ -14,6 +15,7 @@ export class ForecastDetailComponent implements OnChanges {
     @Input() forecast: WeatherForecast;
     summaries = summaries;
 
+    submitted: boolean = false;
     forecastForm: FormGroup;
     
     get dateFormatted() { return this.forecastForm.get('dateFormatted'); }
@@ -36,13 +38,21 @@ export class ForecastDetailComponent implements OnChanges {
     }
 
     onSubmit() {
-        this.forecastForm.statusChanges.subscribe((status) => {
-            if (status === "VALID") {
-                this.forecast = this.prepareSaveForecast();
-                this.forecastService.updateForecast(this.forecast).subscribe(/* error handling */);
-                this.ngOnChanges();
-            }
-        });
+        if (this.forecastForm.pending) {
+            this.forecastForm.statusChanges.subscribe((status) => {
+                if (status === "VALID") {
+                    this.updateForcast();
+                }
+            });
+        } else {
+            if (this.forecastForm.valid)
+                this.updateForcast();
+        }
+    }
+
+    updateForcast() {
+        this.forecastService.updateForecast(this.prepareSaveForecast()).subscribe();
+        this.ngOnChanges();
     }
 
     prepareSaveForecast(): WeatherForecast {
