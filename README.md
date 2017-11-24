@@ -1,6 +1,24 @@
 # AspNetCore-AngularSpa-Playground
 
+### Running the application
+
+* Clone the project
+* Open command prompt on the project root directory. Run,
+    
+     ```
+     npm install
+     
+     webpack --config webpack.config.vendor.js
+     
+     webpack
+     
+     ```
+* Use visual studio or dotnet cli to run the project.
+* If you are using Azure for deployment, make sure you use kude to create a folder named `Uploads` under the `D:\home\site\wwwroot\` directory. You can get access to Kudu from `Advanced Tools` that is available in your application's settings panel.
+
 ![App Screen Shot](https://github.com/fiyazbinhasan/AspNetCore-AngularSpa-Playground/blob/master/app-screen-shot.png)
+
+## Important Links
 
 ### Working with Files
 
