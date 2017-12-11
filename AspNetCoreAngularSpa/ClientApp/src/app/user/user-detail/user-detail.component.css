@@ -1,0 +1,60 @@
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+    .inputfile + label {
+        display: none;
+        color: rgba(255,255,255,.87);
+        background-color: #673ab7;
+    }
+
+    .inputfile + label {
+        max-width: 80%;
+        /* font-size: 1.25rem; */
+        /* font-weight: 700; */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+        padding: 0 16px;
+        border-radius: 2px;
+        line-height: 36px;
+        box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+        /* 10px 20px */
+    }
+
+
+    .inputfile:focus + label,
+    .inputfile.has-focus + label {
+        outline: 1px dotted #000;
+        outline: -webkit-focus-ring-color auto 5px;
+        background-color: #722040;
+    }
+
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+.user-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.user-controls-full-width {
+    width: 100%;
+}

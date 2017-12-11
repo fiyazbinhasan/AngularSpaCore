@@ -1,0 +1,43 @@
+﻿<form [formGroup]="forecastForm" (submit)="onSubmit()" novalidate class="forecast-form">
+    <mat-form-field class="forecast-controls-full-width">
+        <input matInput type="datetime-local" placeholder="Choose a date" id="dateFormatted" formControlName="dateFormatted">
+        <!--<div *ngIf="dateFormatted.invalid && (dateFormatted.dirty || dateFormatted.touched)">
+            <span *ngIf="dateFormatted.errors.required">
+                <i class="text-danger">Date is required.</i>
+            </span>
+            <span *ngIf="dateFormatted.errors.existingDate">
+                <i class="text-danger">Date already exists.</i>
+            </span>
+        </div>-->
+    </mat-form-field>
+
+    <mat-form-field class="forecast-controls-full-width">
+        <input matInput placeholder="Temperature in Celcius" id="temperatureC" formControlName="temperatureC">
+        <!--<div *ngIf="temperatureC.invalid && (temperatureC.dirty || temperatureC.touched)">
+            <span *ngIf="temperatureC.errors.required">
+                <i class="text-danger">Temperature in celcius is required.</i>
+            </span>
+        </div>-->
+    </mat-form-field>
+
+    <mat-form-field class="forecast-controls-full-width">
+        <input matInput placeholder="Temperature in Farenheit" id="temperatureF" formControlName="temperatureF">
+        <!--<div *ngIf="temperatureC.invalid && (temperatureC.dirty || temperatureC.touched)">
+            <span *ngIf="temperatureC.errors.required">
+                <i class="text-danger">Temperature in celcius is required.</i>
+            </span>
+        </div>-->
+    </mat-form-field>
+
+    <mat-form-field class="forecast-controls-full-width">
+        <mat-select  id="summary" formControlName="summary">
+            <mat-option *ngFor="let summary of summaries" [value]="summary">
+                {{summary}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="accent">
+        Save
+    </button>
+</form>
