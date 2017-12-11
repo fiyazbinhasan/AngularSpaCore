@@ -1,4 +1,4 @@
-﻿<form [formGroup]="forecastForm" (submit)="onSubmit()" novalidate class="forecast-form">
+<form [formGroup]="forecastForm" (submit)="onSubmit()" novalidate class="forecast-form">
     <mat-form-field class="forecast-controls-full-width">
         <input matInput type="datetime-local" placeholder="Choose a date" id="dateFormatted" formControlName="dateFormatted">
         <!--<div *ngIf="dateFormatted.invalid && (dateFormatted.dirty || dateFormatted.touched)">

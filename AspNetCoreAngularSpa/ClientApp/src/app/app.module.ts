@@ -34,7 +34,7 @@ import { UserService } from './user/user.service';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
@@ -53,12 +53,10 @@ import { UserService } from './user/user.service';
     MatSelectModule,
 
     RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'forecasts', component: ForecastListComponent },
       { path: 'users', component: UserListComponent },
-      { path: '**', redirectTo: 'home' }
     ])
   ],
   providers: [ForecastService, UserService, ForcastValidators] ,

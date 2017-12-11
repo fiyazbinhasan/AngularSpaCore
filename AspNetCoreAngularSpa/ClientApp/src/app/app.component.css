@@ -1,12 +1,6 @@
 .body-content {
-    background: #fafafa;
-}
-
-.content-outlet {
-    padding: 16px;
-}
-.body-content {
-    background: #fafafa;
+  background: #303030;
+  color: white;
 }
 
 .content-outlet {
