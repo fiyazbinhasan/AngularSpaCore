@@ -21,6 +21,7 @@
 ### Updated ASP.NET Core SPA tempates
 
 * [About The Updated SPA Templates From ASP.NET Core](http://fiyazhasan.me/about-updated-spa-templates-from-asp-net-core/)
+* [Migrating from the old ASP.NET Core Angular Spa template to the newer one](http://fiyazhasan.me/migrating-from-the-old-asp-net-core-angular-spa-template-to-the-newer-one/)
 
 ### Working with Files
 
