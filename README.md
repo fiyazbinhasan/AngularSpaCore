@@ -18,6 +18,14 @@
 
 ## Important Links
 
+### Anngular Elements
+
+* [Creating Reusable Custom Elements in Angular 6+](http://fiyazhasan.me/creating-reusable-custom-elements-in-angular-6-2/)
+
+### State Management
+
+* [My Notebook: Redux & NGRX](http://fiyazhasan.me/my-notebook-redux-ngrx/)
+
 ### Updated ASP.NET Core SPA tempates
 
 * [About The Updated SPA Templates From ASP.NET Core](http://fiyazhasan.me/about-updated-spa-templates-from-asp-net-core/)
