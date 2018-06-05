@@ -43,9 +43,11 @@ namespace AspNetCoreAngularSpa
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseStaticFiles(new StaticFileOptions

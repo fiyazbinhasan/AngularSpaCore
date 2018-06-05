@@ -2,9 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatCardModule, MatGridListModule, MatListModule, MatIconModule, MatInputModule, MatToolbarModule, MatTableModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatGridListModule,
+  MatListModule,
+  MatIconModule,
+  MatInputModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSelectModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -20,8 +32,6 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserService } from './user/user.service';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +45,7 @@ import { UserService } from './user/user.service';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -56,10 +66,10 @@ import { UserService } from './user/user.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'forecasts', component: ForecastListComponent },
-      { path: 'users', component: UserListComponent },
+      { path: 'users', component: UserListComponent }
     ])
   ],
-  providers: [ForecastService, UserService, ForcastValidators] ,
+  providers: [ForecastService, UserService, ForcastValidators],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,22 +1,24 @@
-<p *ngIf="isLoading"><i>Loading users ... </i></p>
+<p *ngIf="isLoading">
+  <i>Loading users ... </i>
+</p>
 
 <mat-selection-list *ngIf="users">
-    <h3 mat-subheader>Users</h3>
-    <mat-list-item *ngFor="let user of users">
-        <img matListAvatar src="/Uploads/{{user.avatar}}" [alt]="user.name">
-        <a mat-line (click)="select(user)">{{user.name}}</a>
-    </mat-list-item>
-    <mat-divider></mat-divider>
+  <h3 mat-subheader>Users</h3>
+  <mat-list-item *ngFor="let user of users">
+    <img matListAvatar src="/Uploads/{{user.avatar}}" [alt]="user.name">
+    <a mat-line (click)="select(user)">{{user.name}}</a>
+  </mat-list-item>
+  <mat-divider></mat-divider>
 </mat-selection-list>
 
 <div class="fab-container">
-    <button mat-fab (click)="onAddButtonClicked()">
-        <mat-icon>add</mat-icon>
-    </button>
+  <button mat-fab (click)="onAddButtonClicked()">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
 
 <div *ngIf="selectedUser">
-    <h3 *ngIf="!selectedUser.name">User Detail</h3>
-    <h3 *ngIf="selectedUser.name">Editing: {{selectedUser.name}}</h3>
-    <user-detail [user]="selectedUser" (created)="onCreated($event)" (updated)="onUpdated($event)"></user-detail>
+  <h3 *ngIf="!selectedUser.name">User Detail</h3>
+  <h3 *ngIf="selectedUser.name">Editing: {{selectedUser.name}}</h3>
+  <app-user-detail [user]="selectedUser" (created)="onCreated($event)" (updated)="onUpdated($event)"></app-user-detail>
 </div>

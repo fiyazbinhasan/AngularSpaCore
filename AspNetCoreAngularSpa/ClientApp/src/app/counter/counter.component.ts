@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'counter',
-    templateUrl: './counter.component.html'
+  selector: 'app-counter',
+  templateUrl: './counter.component.html'
 })
 export class CounterComponent {
-    public currentCount = 20;
+  public currentCount = 10;
 
-    public incrementCounter() {
-        this.currentCount++;
-    }
+  public incrementCounter() {
+    this.currentCount++;
+  }
 
-    public decrementCounter() {
-        this.currentCount--;
-    }
+  public decrementCounter() {
+    this.currentCount--;
+  }
 }

@@ -4,46 +4,46 @@
 <!--<button type="button" (click)="onAddButtonClicked()" class="btn btn-primary">Add Forecast</button>-->
 
 <div class="container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource">
 
-        <!--- Note that these columns can be defined in any order.
+    <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-        <!-- Position Column -->
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-            <mat-cell *matCellDef="let forecast"> {{ forecast.id }} </mat-cell>
-        </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let forecast"> {{ forecast.id }} </mat-cell>
+    </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="dateFormatted">
-            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-            <mat-cell *matCellDef="let forecast"> {{ forecast.dateFormatted | date:'medium'}} </mat-cell>
-        </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="dateFormatted">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let forecast"> {{ forecast.dateFormatted | date:'medium'}} </mat-cell>
+    </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="temperatureC">
-            <mat-header-cell *matHeaderCellDef> Temp. (C) </mat-header-cell>
-            <mat-cell *matCellDef="let forecast"> {{ forecast.temperatureC }} </mat-cell>
-        </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="temperatureC">
+      <mat-header-cell *matHeaderCellDef> Temp. (C) </mat-header-cell>
+      <mat-cell *matCellDef="let forecast"> {{ forecast.temperatureC }} </mat-cell>
+    </ng-container>
 
-        <!-- Color Column -->
-        <ng-container matColumnDef="temperatureF">
-            <mat-header-cell *matHeaderCellDef> Temp. (F) </mat-header-cell>
-            <mat-cell *matCellDef="let forecast"> {{ forecast.temperatureF }} </mat-cell>
-        </ng-container>
+    <!-- Color Column -->
+    <ng-container matColumnDef="temperatureF">
+      <mat-header-cell *matHeaderCellDef> Temp. (F) </mat-header-cell>
+      <mat-cell *matCellDef="let forecast"> {{ forecast.temperatureF }} </mat-cell>
+    </ng-container>
 
-        <ng-container matColumnDef="summary">
-            <mat-header-cell *matHeaderCellDef> Summary </mat-header-cell>
-            <mat-cell *matCellDef="let forecast"> {{ forecast.summary }} </mat-cell>
-        </ng-container>
+    <ng-container matColumnDef="summary">
+      <mat-header-cell *matHeaderCellDef> Summary </mat-header-cell>
+      <mat-cell *matCellDef="let forecast"> {{ forecast.summary }} </mat-cell>
+    </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="select(row)"></mat-row>
-    </mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="select(row)"></mat-row>
+  </mat-table>
 </div>
 
 <div *ngIf="selectedForecast">
-    <h2>Forecast Detail</h2>
-    <h3>Editing: {{selectedForecast.dateFormatted | date:'medium' }}</h3>
-    <forecast-detail [forecast]="selectedForecast"></forecast-detail>
+  <h2>Forecast Detail</h2>
+  <h3>Editing: {{selectedForecast.dateFormatted | date:'medium' }}</h3>
+  <app-forecast-detail [forecast]="selectedForecast"></app-forecast-detail>
 </div>
