@@ -1,16 +1,19 @@
 <mat-toolbar color="primary">
+  <mat-toolbar-row>
     <span>ASP.NET Core Angular SPA</span>
-    <span class="spacer"></span>
-    <button mat-icon-button [routerLink]="['/']">
+    <div class="right-aligned-buttons">
+      <button mat-icon-button [routerLink]="['/']">
         <mat-icon>web</mat-icon>
-    </button>
-    <button mat-icon-button [routerLink]="['/counter']">
+      </button>
+      <button mat-icon-button [routerLink]="['/counter']">
         <mat-icon>timer</mat-icon>
-    </button>
-    <button mat-icon-button [routerLink]="['/forecasts']">
+      </button>
+      <button mat-icon-button [routerLink]="['/forecasts']">
         <mat-icon>cloud download</mat-icon>
-    </button>
-    <button mat-icon-button [routerLink]="['/users']">
+      </button>
+      <button mat-icon-button [routerLink]="['/users']">
         <mat-icon>person pin</mat-icon>
-    </button>
+      </button>
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>

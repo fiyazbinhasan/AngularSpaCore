@@ -1,3 +1,8 @@
 .content-outlet {
   padding: 16px;
 }
+
+.app-root{
+  display: flex;
+  flex-direction: column;
+}
